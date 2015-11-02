@@ -1,0 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <!-- 定义一个表格 第二列允许收缩，第三列允许拉伸-->
+    <TableLayout
+        android:id="@+id/tbl1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:shrinkColumns="2"
+        android:stretchColumns="2"
+        >
+
+        <!-- 直接添加按钮，它自己会占一行 -->
+        <Button android:id="@+id/ok1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="独自一行的按钮"
+            />
+
+        <TableRow>
+        <!-- 为该表格行添加3个按钮 -->
+        <Button android:id="@+id/ok2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="普通按钮"
+            />
+
+        </TableRow>>
+    </TableLayout>
+
+
+
+    <Button
+        android:id="@+id/bn1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bn1"
+        />
+
+    <Button
+        android:id="@+id/bn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bn2"
+        />
+
+    <Button
+        android:id="@+id/bn3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bn3"
+        />
+
+    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

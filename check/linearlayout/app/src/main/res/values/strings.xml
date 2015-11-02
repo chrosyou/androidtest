@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">linearlayout</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="bn1">按钮一</string>
+    <string name="bn2">按钮二</string>
+    <string name="bn3">按钮三</string>
+</resources>
