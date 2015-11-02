@@ -1,0 +1,8 @@
+
+1.安装java1.8.20
+
+2.安装android studio
+android-studio-ide-141.2178183-windows.exe
+
+3.安装sdk
+
