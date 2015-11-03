@@ -2,15 +2,77 @@ package com.macalyou.murisly.framelayout;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends Activity {
+
+    private int currentColor = 0;
+    final int[] colors = new int[]{
+            R.color.color1,
+            R.color.color2,
+            R.color.color3,
+            R.color.color4,
+            R.color.color5,
+            R.color.color6,
+    };
+
+    final int[] names = new int[]{
+            R.id.view01,
+            R.id.view02,
+            R.id.view03,
+            R.id.view04,
+            R.id.view05,
+            R.id.view06,
+    };
+    TextView[] views = new TextView[names.length];
+    Handler handler = new Handler()
+    {
+        @Override
+        public void handleMessage(Message msg)
+        {
+            //表明消息来自本程序
+            if (msg.what == 0x111)
+            {
+                for (int i = 0; i < names.length; i++)
+                {
+                    views[i].setBackgroundResource(colors[(i + currentColor) % names.length]);
+                }
+                currentColor++;
+            }
+            super.handleMessage(msg);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //获得控件id
+        for (int i = 0; i < names.length; i++)
+        {
+            views[i] = (TextView)findViewById(names[i]);
+        }
+
+        //周期性改变currentColor变量值
+
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                //放消息改变值
+                Message m = new Message();
+                m.what = 0x111;
+                handler.sendMessage(m);
+            }
+        }, 0, 200);
+
     }
 
     @Override
