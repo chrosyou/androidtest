@@ -1,0 +1,68 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:stretchColumns="1"
+    >
+
+    <TableRow>
+        <TextView
+            android:text="用户名："
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="10pt"
+            />
+
+        <EditText
+            android:hint="填写登录账号"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:selectAllOnFocus="true"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="密码:"
+            android:textSize="10pt"
+            />
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:password="true"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="电话号码:"
+            android:textSize="10pt"
+            />
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="请填写您的电话号码"
+            android:selectAllOnFocus="true"
+            android:phoneNumber="true"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="出生日期:"
+            android:textSize="10pt"
+            />
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            />
+    </TableRow>
+</TableLayout>
