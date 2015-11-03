@@ -7,12 +7,6 @@ import android.view.MenuItem;
 
 public class MainActivity extends Activity {
 
-    private int currentColor = 0;
-    //定义一个颜色数组
-    final int[] colors = new int[] {
-            R.color.color1,
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
