@@ -11,16 +11,16 @@ import android.widget.ImageView;
 
 public class MainActivity extends Activity {
 
-    private float alpha = 255;
-    final Button btplus = (Button)findViewById(R.id.plus);
-    final Button btminus = (Button)findViewById(R.id.minus);
-    final ImageView image1 = (ImageView)findViewById(R.id.image1);
+    private int alpha = 255;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final Button btplus =  (Button)findViewById(R.id.plus);
+        final Button btminus = (Button)findViewById(R.id.minus);
+        final ImageView image1 = (ImageView)findViewById(R.id.image1);
         OnClickListener listerner = new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,7 +40,7 @@ public class MainActivity extends Activity {
                 {
                     alpha = 0;
                 }
-                image1.setAlpha(alpha);
+                image1.setImageAlpha(alpha);
             }
         };
 
