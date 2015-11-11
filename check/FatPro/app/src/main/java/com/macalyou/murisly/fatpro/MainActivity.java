@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -22,17 +23,25 @@ public class MainActivity extends Activity {
         ImageView imageView = (ImageView)findViewById(R.id.anim);
         //获取AnimationDrawable动画对象
         final AnimationDrawable anim = (AnimationDrawable)imageView.getBackground();
-        play.setOnClickListener(new View.OnClickListener() {
+        play.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
-                //开始播放动画
+            public void onClick(View v)
+            {
+                Toast toast = Toast.makeText(MainActivity.this, "开始动画", Toast.LENGTH_SHORT);
+                toast.show();
+                // 开始播放动画
                 anim.start();
             }
         });
-        stop.setOnClickListener(new View.OnClickListener() {
+        stop.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
-                //停止播放动画
+            public void onClick(View v)
+            {
+                Toast toast = Toast.makeText(MainActivity.this, "结束动画", Toast.LENGTH_SHORT);
+                toast.show();
+                // 停止播放动画
                 anim.stop();
             }
         });
