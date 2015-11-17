@@ -38,9 +38,9 @@ public class MainActivity extends ListActivity implements View.OnClickListener {
             isShadowVisible = savedInstanceState.getBoolean("isShadowVisible");
             hasHeaderAndFooter = savedInstanceState.getBoolean("hasHeaderAndFooter");
         }
-        initializeHeaderAndFooter();
+        //initializeHeaderAndFooter();
         initializeAdapter();
-        initializePadding();
+        //initializePadding();
     }
 
     @Override
@@ -120,9 +120,9 @@ public class MainActivity extends ListActivity implements View.OnClickListener {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
-        menu.getItem(0).setChecked(isFastScroll);
-        menu.getItem(1).setChecked(addPadding);
-        menu.getItem(2).setChecked(isShadowVisible);
+        //menu.getItem(0).setChecked(isFastScroll);
+        //menu.getItem(1).setChecked(addPadding);
+        //menu.getItem(2).setChecked(isShadowVisible);
 
         return true;
     }
@@ -132,6 +132,7 @@ public class MainActivity extends ListActivity implements View.OnClickListener {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+        /*
         switch (item.getItemId()) {
             case R.id.action_fastscroll:
                 isFastScroll = !isFastScroll;
@@ -157,7 +158,7 @@ public class MainActivity extends ListActivity implements View.OnClickListener {
                 updateDataset();
                 break;
         }
-
+        */
         return super.onOptionsItemSelected(item);
     }
 
