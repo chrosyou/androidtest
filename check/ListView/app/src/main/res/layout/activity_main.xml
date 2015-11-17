@@ -1,0 +1,36 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/myframelayout"
+        >
+
+
+    </FrameLayout>
+
+    <com.macalyou.murisly.listview.PinableFrameLayout
+        android:id="@+id/pf_fram"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+        <ListView
+            android:id="@+id/lvsoftname"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:divider="#0f0"
+            android:dividerHeight="2px"
+
+            />
+
+    </com.macalyou.murisly.listview.PinableFrameLayout>
+
+
+
+</LinearLayout>
