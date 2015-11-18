@@ -215,8 +215,9 @@ public class StickyLayout extends LinearLayout {
     }
 
     public void smoothSetHeaderHeight(final int from, final int to, long duration, final boolean modifyOriginalHeaderHeight) {
-        final int frameCount = (int) (duration / 1000f * 30) + 1;
-        final float partation = (to - from) / (float) frameCount;
+        final int frameCount = ((int) (duration / 1000f * 30) + 1) ;
+        final float partation = (to - from) / (float) frameCount ;
+
         new Thread("Thread#smoothSetHeaderHeight") {
 
             @Override
