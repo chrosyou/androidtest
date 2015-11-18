@@ -51,7 +51,7 @@ public class PinnedHeaderExpandableListView extends ExpandableListView implement
 		 * @param childPosition
 		 * @param alpha
 		 */
-		void configureHeader(View header, int groupPosition,int childPosition, int alpha);
+		void configureHeader(View header, int groupPosition, int childPosition, int alpha);
 
 		/**
 		 * 设置组按下的状态 
@@ -94,10 +94,10 @@ public class PinnedHeaderExpandableListView extends ExpandableListView implement
 		view.setLayoutParams(lp);
 
 		if (mHeaderView != null) {
-			setFadingEdgeLength(0);
+			setFadingEdgeLength(0);   //渐变边缘
 		}
 
-		requestLayout();
+		requestLayout();  //
 	}
 
 	private void registerListener() {

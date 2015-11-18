@@ -40,8 +40,7 @@ public class PinnedHeaderExpandableAdapter extends  BaseExpandableListAdapter im
 	}
 
 	@Override
-	public View getChildView(int groupPosition, int childPosition,
-			boolean isLastChild, View convertView, ViewGroup parent) {
+	public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
 		View view = null;  
         if (convertView != null) {  
             view = convertView;  
@@ -55,6 +54,9 @@ public class PinnedHeaderExpandableAdapter extends  BaseExpandableListAdapter im
 
 	@Override
 	public int getChildrenCount(int groupPosition) {
+		//if (groupPosition < 0)
+		//	return 1;
+
 		return childrenData[groupPosition].length;
 	}
 
@@ -74,8 +76,7 @@ public class PinnedHeaderExpandableAdapter extends  BaseExpandableListAdapter im
 	}
 
 	@Override
-	public View getGroupView(int groupPosition, boolean isExpanded,
-			View convertView, ViewGroup parent) {
+	public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
 		View view = null;  
         if (convertView != null) {  
             view = convertView;  

@@ -31,7 +31,7 @@ public class MainActivity extends Activity {
 
         lv = (ListView) findViewById(R.id.lv);
         View header = View.inflate(this, R.layout.stick_header, null);//头部内容
-        //lv.addHeaderView(header);//添加头部
+        lv.addHeaderView(header);//添加头部
         //lv.addHeaderView(View.inflate(this, R.layout.stick_action, null));//ListView条目中的悬浮部分 添加到头部
 
         lv.setAdapter(new ArrayAdapter<String>(this,

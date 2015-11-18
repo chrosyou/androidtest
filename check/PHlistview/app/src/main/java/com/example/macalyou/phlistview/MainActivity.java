@@ -6,14 +6,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
     private PinnedHeaderExpandableListView explistview;
     private String[][] childrenData = new String[10][10];
     private String[] groupData = new String[10];
-    private int expandFlag = -1;//控制列表的展开
+    private int expandFlag = -1;  //控制列表的展开
     private PinnedHeaderExpandableAdapter adapter;
+    private TextView tvHeader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,18 +37,19 @@ public class MainActivity extends Activity {
      * 初始化数据
      */
     private void initData() {
-        for(int i=0;i<10;i++){
+        for(int i=1;i<9;i++){
             groupData[i] = "分组"+i;
         }
 
-        for(int i=0;i<10;i++){
-            for(int j=0;j<10;j++){
+        for(int i=1;i<9;i++){
+            for(int j=1;j<9;j++){
                 childrenData[i][j] = "好友"+i+"-"+j;
             }
         }
         //设置悬浮头部VIEW
-        explistview.setHeaderView(getLayoutInflater().inflate(R.layout.group_head,
-                explistview, false));
+        //explistview.setHeaderView(getLayoutInflater().inflate(R.layout.group_head, explistview, false));
+        View header = View.inflate(this, R.layout.group_head, null);//头部内容
+        explistview.setHeaderView(header);//添加头部
         adapter = new PinnedHeaderExpandableAdapter(childrenData, groupData, getApplicationContext(),explistview);
         explistview.setAdapter(adapter);
 
