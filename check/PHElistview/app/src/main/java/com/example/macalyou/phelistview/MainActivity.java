@@ -64,7 +64,7 @@ public class MainActivity extends Activity implements
         Group group = null;
         for (int i = 0; i < 3; i++) {
             group = new Group();
-            group.setTitle("group-" + i);
+            group.setTitle("appname-" + i);
             groupList.add(group);
         }
 
@@ -75,7 +75,7 @@ public class MainActivity extends Activity implements
                 childTemp = new ArrayList<People>();
                 for (int j = 0; j < 13; j++) {
                     People people = new People();
-                    people.setName("yy-" + j);
+                    people.setName("item-" + j);
                     people.setAge(30);
                     people.setAddress("sh-" + j);
 
@@ -198,8 +198,8 @@ public class MainActivity extends Activity implements
                         .findViewById(R.id.name);
                 childHolder.textAge = (TextView) convertView
                         .findViewById(R.id.age);
-                childHolder.textAddress = (TextView) convertView
-                        .findViewById(R.id.address);
+                //childHolder.textAddress = (TextView) convertView
+                //        .findViewById(R.id.address);
                 childHolder.imageView = (ImageView) convertView
                         .findViewById(R.id.image);
                 Button button = (Button) convertView
@@ -220,8 +220,8 @@ public class MainActivity extends Activity implements
                     childPosition)).getName());
             childHolder.textAge.setText(String.valueOf(((People) getChild(
                     groupPosition, childPosition)).getAge()));
-            childHolder.textAddress.setText(((People) getChild(groupPosition,
-                    childPosition)).getAddress());
+            //childHolder.textAddress.setText(((People) getChild(groupPosition,
+            //        childPosition)).getAddress());
 
             return convertView;
         }
@@ -236,6 +236,9 @@ public class MainActivity extends Activity implements
     public boolean onGroupClick(final ExpandableListView parent, final View v,
                                 int groupPosition, final long id) {
 
+        Toast.makeText(MainActivity.this,
+                groupList.get(groupPosition).getTitle(), 1)
+                .show();
         return false;
     }
 

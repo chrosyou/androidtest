@@ -16,15 +16,34 @@
             android:id="@+id/sticky_header"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:gravity="center"
-            android:background="#78A524"
-            android:orientation="vertical" >
+            android:gravity="left"
+            android:background="#99cc33"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:textColor="#0ff"
+                android:text="1000M"
+                />
+
+            <TextView
+                android:id="@+id/tvTitle2"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:textColor="#0ff"
+                android:textSize="60dp"
+                android:text="测试"
+                />
+
 
             <ImageView
                 android:id="@+id/imageView1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="fill_parent"
                 android:src="@drawable/ic_launcher" />
+
 
         </LinearLayout>
 

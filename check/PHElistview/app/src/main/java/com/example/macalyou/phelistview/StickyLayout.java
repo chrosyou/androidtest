@@ -47,8 +47,8 @@ public class StickyLayout extends LinearLayout {
         public boolean giveUpTouchEvent(MotionEvent event);
     }
 
-    private View mHeader;
-    private View mContent;
+    private View mHeader;  //顶上view
+    private View mContent; //扩展list
     private OnGiveUpTouchEventListener mGiveUpTouchEventListener;
 
     // header的高度  单位：px
@@ -59,6 +59,7 @@ public class StickyLayout extends LinearLayout {
     public static final int STATUS_EXPANDED = 1;
     public static final int STATUS_COLLAPSED = 2;
 
+    // 手指一动距离大于这个就开始移动控件
     private int mTouchSlop;
 
     // 分别记录上次滑动的坐标
@@ -97,6 +98,7 @@ public class StickyLayout extends LinearLayout {
         }
     }
 
+    // 获得高度
     private void initData() {
         int headerId= getResources().getIdentifier("sticky_header", "id", getContext().getPackageName());
         int contentId = getResources().getIdentifier("sticky_content", "id", getContext().getPackageName());
@@ -219,9 +221,9 @@ public class StickyLayout extends LinearLayout {
         final float partation = (to - from) / (float) frameCount ;
 
         new Thread("Thread#smoothSetHeaderHeight") {
-
+            //自动缩放动画
             @Override
-            public void run() {
+            public void run() {/*
                 for (int i = 0; i < frameCount; i++) {
                     final int height;
                     if (i == frameCount - 1) {
@@ -243,7 +245,7 @@ public class StickyLayout extends LinearLayout {
 
                 if (modifyOriginalHeaderHeight) {
                     setOriginalHeaderHeight(to);
-                }
+                }*/
             };
 
         }.start();
@@ -268,8 +270,9 @@ public class StickyLayout extends LinearLayout {
         if (DEBUG) {
             Log.d(TAG, "setHeaderHeight height=" + height);
         }
-        if (height <= 0) {
-            height = 0;
+        //控制头部的高度
+        if (height <= 50) {
+            height = 50;
         } else if (height > mOriginalHeaderHeight) {
             height = mOriginalHeaderHeight;
         }
@@ -282,7 +285,7 @@ public class StickyLayout extends LinearLayout {
 
         if (mHeader != null && mHeader.getLayoutParams() != null) {
             mHeader.getLayoutParams().height = height;
-            mHeader.requestLayout();
+            mHeader.requestLayout();   //调整大小
             mHeaderHeight = height;
         } else {
             if (DEBUG) {

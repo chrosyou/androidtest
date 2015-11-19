@@ -49,6 +49,11 @@ public class PinnedHeaderExpandableListView extends ExpandableListView implement
          */
         public View getPinnedHeader();
 
+        /**
+         * 更新list的头
+         * @param headerView
+         * @param firstVisibleGroupPos
+         */
         public void updatePinnedHeader(View headerView, int firstVisibleGroupPos);
     }
 
@@ -115,11 +120,11 @@ public class PinnedHeaderExpandableListView extends ExpandableListView implement
             return;
         }
         mHeaderView = listener.getPinnedHeader();
-        int firstVisiblePos = getFirstVisiblePosition();
+        int firstVisiblePos = getFirstVisiblePosition();  //获得首个显示的位置
         int firstVisibleGroupPos = getPackedPositionGroup(getExpandableListPosition(firstVisiblePos));
         listener.updatePinnedHeader(mHeaderView, firstVisibleGroupPos);
         requestLayout();
-        postInvalidate();
+        postInvalidate();  //更新界面
     }
 
     @Override
