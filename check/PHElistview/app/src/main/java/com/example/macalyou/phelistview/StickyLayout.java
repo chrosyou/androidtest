@@ -37,6 +37,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 
 public class StickyLayout extends LinearLayout {
@@ -100,7 +101,7 @@ public class StickyLayout extends LinearLayout {
 
     // 获得高度
     private void initData() {
-        int headerId= getResources().getIdentifier("sticky_header", "id", getContext().getPackageName());
+        int headerId  = getResources().getIdentifier("sticky_header", "id", getContext().getPackageName());
         int contentId = getResources().getIdentifier("sticky_content", "id", getContext().getPackageName());
         if (headerId != 0 && contentId != 0) {
             mHeader = findViewById(headerId);
@@ -285,6 +286,8 @@ public class StickyLayout extends LinearLayout {
 
         if (mHeader != null && mHeader.getLayoutParams() != null) {
             mHeader.getLayoutParams().height = height;
+            TextView tvTitle = (TextView)mHeader.findViewById(R.id.tvTitle);
+            tvTitle.setTextSize(20);
             mHeader.requestLayout();   //调整大小
             mHeaderHeight = height;
         } else {

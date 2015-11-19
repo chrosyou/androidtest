@@ -26,6 +26,8 @@
                 android:layout_height="fill_parent"
                 android:textColor="#0ff"
                 android:text="1000M"
+
+                android:background="#ff0"
                 />
 
             <TextView
