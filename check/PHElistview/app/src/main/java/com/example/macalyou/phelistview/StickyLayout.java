@@ -224,7 +224,7 @@ public class StickyLayout extends LinearLayout {
         new Thread("Thread#smoothSetHeaderHeight") {
             //自动缩放动画
             @Override
-            public void run() {/*
+            public void run() {
                 for (int i = 0; i < frameCount; i++) {
                     final int height;
                     if (i == frameCount - 1) {
@@ -246,7 +246,7 @@ public class StickyLayout extends LinearLayout {
 
                 if (modifyOriginalHeaderHeight) {
                     setOriginalHeaderHeight(to);
-                }*/
+                }
             };
 
         }.start();
@@ -286,8 +286,6 @@ public class StickyLayout extends LinearLayout {
 
         if (mHeader != null && mHeader.getLayoutParams() != null) {
             mHeader.getLayoutParams().height = height;
-            TextView tvTitle = (TextView)mHeader.findViewById(R.id.tvTitle);
-            tvTitle.setTextSize(20);
             mHeader.requestLayout();   //调整大小
             mHeaderHeight = height;
         } else {
