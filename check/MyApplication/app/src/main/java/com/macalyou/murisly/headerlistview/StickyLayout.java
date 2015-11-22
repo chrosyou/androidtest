@@ -81,7 +81,7 @@ public class StickyLayout extends LinearLayout {
     //字体动画总时间
     private int mAnimationInterval = 200;
     //字体动画绘制间隔
-    private int mDrawInterval = 15;
+    private int mDrawInterval = 12;
 
     private boolean mIsSticky = true;
     private boolean mInitDataSucceed = false;
@@ -197,8 +197,8 @@ public class StickyLayout extends LinearLayout {
             if (DEBUG) {
                 Log.d(TAG, "mHeaderHeight=" + mHeaderHeight + "  deltaY=" + deltaY + "  mlastY=" + mLastY);
             }
-            mHeaderHeight += deltaY;
-            setHeaderHeight(mHeaderHeight);
+            //mHeaderHeight += deltaY;
+            //setHeaderHeight(mHeaderHeight);
             break;
         }
         case MotionEvent.ACTION_UP: {
@@ -300,6 +300,7 @@ public class StickyLayout extends LinearLayout {
             mHeader.getLayoutParams().height = height;
             TextView tvTitle = (TextView)mHeader.findViewById(R.id.tvTitle);
             tvTitle.setTextSize((int)(height * 0.4));
+            Log.d(TAG, "setTextSizeheight=" + height * 0.4);
             mHeader.requestLayout();
             mHeaderHeight = height;
         } else {

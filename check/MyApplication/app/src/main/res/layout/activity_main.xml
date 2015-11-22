@@ -24,6 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="90.12M"
+                android:textSize="64dp"
                 android:gravity="bottom"
                 />
 
