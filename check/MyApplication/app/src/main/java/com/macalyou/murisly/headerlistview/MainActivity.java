@@ -28,7 +28,7 @@ public class MainActivity extends Activity implements
     private PinnedHeaderExpandableListView expandableListView;
     private StickyLayout stickyLayout;
     private ArrayList<Group> groupList;
-    private ArrayList<List<ChildItem>> childList;
+    private ArrayList<List<Child>> childList;
 
     private MyexpandableListAdapter adapter;
 
@@ -68,13 +68,13 @@ public class MainActivity extends Activity implements
             groupList.add(group);
         }
 
-        childList = new ArrayList<List<ChildItem>>();
+        childList = new ArrayList<List<Child>>();
         for (int i = 0; i < groupList.size(); i++) {
-            ArrayList<ChildItem> childTemp;
+            ArrayList<Child> childTemp;
             if (i == 0) {
-                childTemp = new ArrayList<ChildItem>();
+                childTemp = new ArrayList<Child>();
                 for (int j = 0; j < 13; j++) {
-                    ChildItem people = new ChildItem();
+                    Child people = new Child();
                     people.setName("yy-" + j);
                     people.setAge(30);
                     people.setAddress("sh-" + j);
@@ -82,9 +82,9 @@ public class MainActivity extends Activity implements
                     childTemp.add(people);
                 }
             } else if (i == 1) {
-                childTemp = new ArrayList<ChildItem>();
+                childTemp = new ArrayList<Child>();
                 for (int j = 0; j < 8; j++) {
-                    ChildItem people = new ChildItem();
+                    Child people = new Child();
                     people.setName("ff-" + j);
                     people.setAge(40);
                     people.setAddress("sh-" + j);
@@ -92,9 +92,9 @@ public class MainActivity extends Activity implements
                     childTemp.add(people);
                 }
             } else {
-                childTemp = new ArrayList<ChildItem>();
+                childTemp = new ArrayList<Child>();
                 for (int j = 0; j < 23; j++) {
-                    ChildItem people = new ChildItem();
+                    Child people = new Child();
                     people.setName("hh-" + j);
                     people.setAge(20);
                     people.setAddress("sh-" + j);
@@ -167,7 +167,7 @@ public class MainActivity extends Activity implements
             GroupHolder groupHolder = null;
             if (convertView == null) {
                 groupHolder = new GroupHolder();
-                convertView = inflater.inflate(R.layout.group, null);
+                convertView = inflater.inflate(R.layout.groupitem, null);
                 groupHolder.textView = (TextView) convertView
                         .findViewById(R.id.group);
                 groupHolder.imageView = (ImageView) convertView
@@ -192,7 +192,7 @@ public class MainActivity extends Activity implements
             ChildHolder childHolder = null;
             if (convertView == null) {
                 childHolder = new ChildHolder();
-                convertView = inflater.inflate(R.layout.child, null);
+                convertView = inflater.inflate(R.layout.childitem, null);
 
                 childHolder.textName = (TextView) convertView
                         .findViewById(R.id.name);
@@ -216,11 +216,11 @@ public class MainActivity extends Activity implements
                 childHolder = (ChildHolder) convertView.getTag();
             }
 
-            childHolder.textName.setText(((ChildItem) getChild(groupPosition,
+            childHolder.textName.setText(((Child) getChild(groupPosition,
                     childPosition)).getName());
-            childHolder.textAge.setText(String.valueOf(((ChildItem) getChild(
+            childHolder.textAge.setText(String.valueOf(((Child) getChild(
                     groupPosition, childPosition)).getAge()));
-            childHolder.textAddress.setText(((ChildItem) getChild(groupPosition,
+            childHolder.textAddress.setText(((Child) getChild(groupPosition,
                     childPosition)).getAddress());
 
             return convertView;
@@ -263,7 +263,7 @@ public class MainActivity extends Activity implements
 
     @Override
     public View getPinnedHeader() {
-        View headerView = (ViewGroup) getLayoutInflater().inflate(R.layout.group, null);
+        View headerView = (ViewGroup) getLayoutInflater().inflate(R.layout.groupitem, null);
         headerView.setLayoutParams(new LayoutParams(
                 LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 

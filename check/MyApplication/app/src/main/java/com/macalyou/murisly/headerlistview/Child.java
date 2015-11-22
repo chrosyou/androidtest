@@ -1,6 +1,6 @@
 package com.macalyou.murisly.headerlistview;
 
-public class ChildItem {
+public class Child {
 
     private String name;
     private int age;
