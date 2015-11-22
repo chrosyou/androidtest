@@ -221,7 +221,7 @@ public class StickyLayout extends LinearLayout {
         final int frameCount = ((int) (duration / 1000f * 30) + 1) ;
         final float partation = (to - from) / (float) frameCount ;
 
-        new Thread("Thread#smoothSetHeaderHeight") {
+        new Thread("Thread#smoothSetHeaderHeight") {/*
             //自动缩放动画
             @Override
             public void run() {
@@ -247,7 +247,7 @@ public class StickyLayout extends LinearLayout {
                 if (modifyOriginalHeaderHeight) {
                     setOriginalHeaderHeight(to);
                 }
-            };
+            };*/
 
         }.start();
     }

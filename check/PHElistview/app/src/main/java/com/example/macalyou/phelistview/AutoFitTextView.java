@@ -35,9 +35,9 @@ public class AutoFitTextView extends TextView {
         int height = getMeasuredHeight();
         int textLength = text.length();
         int controlLength = (int)(textLength * height / 1.8);
-        //setHeight(controlLength);
+        setHeight(controlLength);
         float trySize = (float) (height * 0.5);
-        //this.setTextSize(trySize);
+        this.setTextSize(trySize);
     }
 
 

@@ -28,9 +28,9 @@
                 android:text="93.44"
                 android:singleLine="true"
                 android:background="#ff0"
-                android:gravity="bottom"
+                android:layout_gravity="bottom"
                 android:ellipsize="none"
-                android:padding="10dp"
+                android:padding="5dp"
                 />
 
             <TextView
