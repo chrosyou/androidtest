@@ -67,8 +67,6 @@ public class PinnedHeaderExpandableListView extends ExpandableListView implement
     private boolean mActionDownHappened = false;
     protected boolean mIsHeaderGroupClickable = true;
 
-    private Rect titlerc;  //按钮位置
-
 
     public PinnedHeaderExpandableListView(Context context) {
         super(context);
@@ -88,20 +86,6 @@ public class PinnedHeaderExpandableListView extends ExpandableListView implement
     private void initView(Context context) {
         setFadingEdgeLength(0);
         setOnScrollListener(this);
-
-        LayoutInflater inflater;
-        inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.groupitem, null);
-        Button btmp = (Button)view.findViewById(R.id.multbutton);
-        float a = btmp.getX();
-        float b = btmp.getY();
-        float c = btmp.getWidth();
-        float d = btmp.getHeight();
-
-//        titlerc.left = (int)(btmp.getX());
-//        titlerc.top = (int)(btmp.getY());
-//        titlerc.right = (int)(btmp.getWidth()) + titlerc.left;
-//        titlerc.bottom = (int)(btmp.getWidth()) + titlerc.top;
     }
 
     @Override

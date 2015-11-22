@@ -97,8 +97,7 @@ public class MainActivity extends Activity implements
     }
 
     @Override
-    public boolean onChildClick(ExpandableListView parent, View v,
-                                int groupPosition, int childPosition, long id) {
+    public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
         Toast.makeText(MainActivity.this, childList.get(groupPosition).get(childPosition).getAppName(), 1).show();
 
         return false;
@@ -107,8 +106,7 @@ public class MainActivity extends Activity implements
     @Override
     public View getPinnedHeader() {
         View headerView = (ViewGroup) getLayoutInflater().inflate(R.layout.groupitem, null);
-        headerView.setLayoutParams(new LayoutParams(
-                LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+        headerView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 
         return headerView;
     }
@@ -116,8 +114,17 @@ public class MainActivity extends Activity implements
     @Override
     public void updatePinnedHeader(View headerView, int firstVisibleGroupPos) {
         Group firstVisibleGroup = (Group) myAdapter.getGroup(firstVisibleGroupPos);
+        int state = firstVisibleGroup.getSelectState();
         TextView textView = (TextView) headerView.findViewById(R.id.group);
+        Button button = (Button)headerView.findViewById(R.id.multbutton);
         textView.setText(firstVisibleGroup.getTitle());
+        if (Group.STATE_SELECTED == state){
+            button.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.common_select_all, 0);
+        } else if (Group.STATE_NOTSELECTED == state) {
+            button.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.common_select_null, 0);
+        } else {
+            button.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.common_select_mult, 0);
+        }
     }
 
     @Override
