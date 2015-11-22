@@ -65,43 +65,24 @@ public class MainActivity extends Activity implements
         for (int i = 0; i < 3; i++) {
             group = new Group();
             group.setTitle("group-" + i);
+            group.setSelectState(Group.STATE_SELECTED);
             groupList.add(group);
         }
 
         childList = new ArrayList<List<Child>>();
         for (int i = 0; i < groupList.size(); i++) {
             ArrayList<Child> childTemp;
-            if (i == 0) {
-                childTemp = new ArrayList<Child>();
-                for (int j = 0; j < 13; j++) {
-                    Child people = new Child();
-                    people.setName("yy-" + j);
-                    people.setAge(30);
-                    people.setAddress("sh-" + j);
 
-                    childTemp.add(people);
-                }
-            } else if (i == 1) {
-                childTemp = new ArrayList<Child>();
-                for (int j = 0; j < 8; j++) {
-                    Child people = new Child();
-                    people.setName("ff-" + j);
-                    people.setAge(40);
-                    people.setAddress("sh-" + j);
+            childTemp = new ArrayList<Child>();
+            for (int j = 0; j < 13; j++) {
+                Child appchild = new Child();
+                appchild.setAppName("name-" + String.valueOf(i) + j);
+                appchild.setCleanSize(j);
+                appchild.setSelectState(Group.STATE_SELECTED);
 
-                    childTemp.add(people);
-                }
-            } else {
-                childTemp = new ArrayList<Child>();
-                for (int j = 0; j < 23; j++) {
-                    Child people = new Child();
-                    people.setName("hh-" + j);
-                    people.setAge(20);
-                    people.setAddress("sh-" + j);
-
-                    childTemp.add(people);
-                }
+                childTemp.add(appchild);
             }
+
             childList.add(childTemp);
         }
 
@@ -131,12 +112,10 @@ public class MainActivity extends Activity implements
         // 返回子列表个数
         @Override
         public int getChildrenCount(int groupPosition) {
-            return childList.get(groupPosition).size();
-        }
+            return childList.get(groupPosition).size(); }
 
         @Override
         public Object getGroup(int groupPosition) {
-
             return groupList.get(groupPosition);
         }
 
@@ -162,23 +141,20 @@ public class MainActivity extends Activity implements
         }
 
         @Override
-        public View getGroupView(int groupPosition, boolean isExpanded,
-                                 View convertView, ViewGroup parent) {
+        public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
             GroupHolder groupHolder = null;
             if (convertView == null) {
                 groupHolder = new GroupHolder();
                 convertView = inflater.inflate(R.layout.groupitem, null);
-                groupHolder.textView = (TextView) convertView
-                        .findViewById(R.id.group);
-                groupHolder.imageView = (ImageView) convertView
-                        .findViewById(R.id.image);
+                groupHolder.textView = (TextView) convertView.findViewById(R.id.group);
+                //groupHolder.imageView = (ImageView) convertView.findViewById(R.id.image);
                 convertView.setTag(groupHolder);
             } else {
                 groupHolder = (GroupHolder) convertView.getTag();
             }
 
-            groupHolder.textView.setText(((Group) getGroup(groupPosition))
-                    .getTitle());
+            groupHolder.textView.setText(((Group) getGroup(groupPosition)).getTitle());
+
             if (isExpanded)// ture is Expanded or false is not isExpanded
                 groupHolder.imageView.setImageResource(R.drawable.expanded);
             else
@@ -187,25 +163,31 @@ public class MainActivity extends Activity implements
         }
 
         @Override
-        public View getChildView(int groupPosition, int childPosition,
-                                 boolean isLastChild, View convertView, ViewGroup parent) {
+        public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
             ChildHolder childHolder = null;
             if (convertView == null) {
                 childHolder = new ChildHolder();
                 convertView = inflater.inflate(R.layout.childitem, null);
 
-                childHolder.appImage = (ImageView) convertView
-                        .findViewById(R.id.appImage);
-                childHolder.textAge = (TextView) convertView
-                        .findViewById(R.id.appName);
-                childHolder.textAddress = (TextView) convertView
-                        .findViewById(R.id.appCleanSize);
-                Button button = (Button) convertView
-                        .findViewById(R.id.isSlect);
+                childHolder.appImage = (ImageView) convertView.findViewById(R.id.appImage);
+                childHolder.appName = (TextView) convertView.findViewById(R.id.appName);
+                childHolder.appCleanSize = (TextView) convertView.findViewById(R.id.appCleanSize);
+                final Button button = (Button) convertView.findViewById(R.id.isSelect);
+                final int fgrouppos = groupPosition;
+                final int fchildpos = childPosition;
+
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(MainActivity.this, "clicked pos=", Toast.LENGTH_SHORT).show();
+                        int selecttemp = childList.get(fgrouppos).get(fchildpos).getSelectState();
+                        if (Group.STATE_SELECTED == selecttemp){
+                            button.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.common_select_null, 0);
+                            childList.get(fgrouppos).get(fchildpos).setSelectState(Group.STATE_NOTSELECTED);
+                        } else {
+                            button.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.common_select_all, 0);
+                            childList.get(fgrouppos).get(fchildpos).setSelectState(Group.STATE_SELECTED);
+                        }
+
                     }
                 });
 
@@ -214,11 +196,10 @@ public class MainActivity extends Activity implements
                 childHolder = (ChildHolder) convertView.getTag();
             }
 
-            //childHolder.textName.setText(((Child) getChild(groupPosition, childPosition)).getName());
-            childHolder.textAge.setText(String.valueOf(((Child) getChild(
-                    groupPosition, childPosition)).getAge()));
-            childHolder.textAddress.setText(((Child) getChild(groupPosition,
-                    childPosition)).getAddress());
+            childHolder.appName.setText(((Child) getChild(groupPosition, childPosition)).getAppName());
+            childHolder.appCleanSize.setText(String.valueOf(((Child) getChild(groupPosition, childPosition)).getCleanSize()) + " MB");
+            //int selecttmp = ((Child)getChild(groupPosition, childPosition)).
+            //childHolder.isSelect.setBackground(((Child) getChild(groupPosition, childPosition)).getAddress());
 
             return convertView;
         }
@@ -240,7 +221,7 @@ public class MainActivity extends Activity implements
     public boolean onChildClick(ExpandableListView parent, View v,
                                 int groupPosition, int childPosition, long id) {
         Toast.makeText(MainActivity.this,
-                childList.get(groupPosition).get(childPosition).getName(), 1)
+                childList.get(groupPosition).get(childPosition).getAppName(), 1)
                 .show();
 
         return false;
@@ -253,9 +234,9 @@ public class MainActivity extends Activity implements
 
     class ChildHolder {
         ImageView appImage;
-        TextView textAge;
-        TextView textAddress;
-        ImageView imageView;
+        TextView appName;
+        TextView appCleanSize;
+        ImageView selectView;
     }
 
     @Override

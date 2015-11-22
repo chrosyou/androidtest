@@ -19,14 +19,17 @@
         android:id="@+id/appName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+        android:layout_weight="2"
+        />
     <TextView
         android:id="@+id/appCleanSize"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:gravity="right"
+        android:layout_weight="2"
+        />
     <Button
-        android:id="@+id/isSlect"
+        android:id="@+id/isSelect"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"

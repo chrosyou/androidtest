@@ -2,33 +2,20 @@ package com.macalyou.murisly.headerlistview;
 
 public class Child {
 
-    private String name;
-    private int age;
-    private String address;
-    private int isSlect;
+    private String appName;
+    private float appCleanSize;
+    private int selectState;
 
-    public String getName() {
-        return name;
-    }
+    public String getAppName() { return appName; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setAppName(String name) { this.appName = name; }
 
-    public int getAge() {
-        return age;
-    }
+    public float getCleanSize() { return appCleanSize; }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
+    public void setCleanSize(float cleansize) { this.appCleanSize = cleansize; }
 
-    public String getAddress() {
-        return address;
-    }
+    public int getSelectState() { return selectState; }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+    public void setSelectState(int selectstate) { this.selectState = selectstate; }
 
 }
