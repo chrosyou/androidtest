@@ -37,6 +37,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 
 public class StickyLayout extends LinearLayout {
@@ -54,11 +55,16 @@ public class StickyLayout extends LinearLayout {
     // header的高度  单位：px
     private int mOriginalHeaderHeight;
     private int mHeaderHeight;
+    //头部最小的高度
+    private int mMinHeaderHeight = 50;
+    //计算头部的高度，用于判断向那边滑动
+    private int mSlideHeight = 0;
 
     private int mStatus = STATUS_EXPANDED;
     public static final int STATUS_EXPANDED = 1;
     public static final int STATUS_COLLAPSED = 2;
 
+    //判断是否滑动的距离
     private int mTouchSlop;
 
     // 分别记录上次滑动的坐标
@@ -71,6 +77,11 @@ public class StickyLayout extends LinearLayout {
 
     // 用来控制滑动角度，仅当角度a满足如下条件才进行滑动：tan a = deltaX / deltaY > 2
     private static final int TAN = 2;
+
+    //字体动画总时间
+    private int mAnimationInterval = 200;
+    //字体动画绘制间隔
+    private int mDrawInterval = 15;
 
     private boolean mIsSticky = true;
     private boolean mInitDataSucceed = false;
@@ -123,7 +134,7 @@ public class StickyLayout extends LinearLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
-        int intercepted = 0;
+        int intercepted = 0; // 0表示向下发送消息，1本层消耗
         int x = (int) event.getX();
         int y = (int) event.getY();
 
@@ -133,6 +144,7 @@ public class StickyLayout extends LinearLayout {
             mLastYIntercept = y;
             mLastX = x;
             mLastY = y;
+            mSlideHeight = y;
             intercepted = 0;
             break;
         }
@@ -174,13 +186,14 @@ public class StickyLayout extends LinearLayout {
         }
         int x = (int) event.getX();
         int y = (int) event.getY();
+        int deltaX = x - mLastX;
+        int deltaY = y - mLastY;
+
         switch (event.getAction()) {
         case MotionEvent.ACTION_DOWN: {
             break;
         }
         case MotionEvent.ACTION_MOVE: {
-            int deltaX = x - mLastX;
-            int deltaY = y - mLastY;
             if (DEBUG) {
                 Log.d(TAG, "mHeaderHeight=" + mHeaderHeight + "  deltaY=" + deltaY + "  mlastY=" + mLastY);
             }
@@ -190,16 +203,17 @@ public class StickyLayout extends LinearLayout {
         }
         case MotionEvent.ACTION_UP: {
             // 这里做了下判断，当松开手的时候，会自动向两边滑动，具体向哪边滑，要看当前所处的位置
-            int destHeight = 0;
-            if (mHeaderHeight <= mOriginalHeaderHeight * 0.5) {
-                destHeight = 0;
+            int destHeight = mMinHeaderHeight;
+            if (y - mSlideHeight < 0) {
+                destHeight = mMinHeaderHeight;
                 mStatus = STATUS_COLLAPSED;
-            } else {
+            }
+            else if (y - mSlideHeight > 0){
                 destHeight = mOriginalHeaderHeight;
                 mStatus = STATUS_EXPANDED;
             }
             // 慢慢滑向终点
-            this.smoothSetHeaderHeight(mHeaderHeight, destHeight, 500);
+            this.smoothSetHeaderHeight(mHeaderHeight, destHeight, mAnimationInterval);
             break;
         }
         default:
@@ -215,8 +229,9 @@ public class StickyLayout extends LinearLayout {
     }
 
     public void smoothSetHeaderHeight(final int from, final int to, long duration, final boolean modifyOriginalHeaderHeight) {
-        final int frameCount = (int) (duration / 1000f * 30) + 1;
-        final float partation = (to - from) / (float) frameCount;
+        final int frameCount = ((int) (mAnimationInterval / mDrawInterval) + 1) ;
+        final float partation = (to - from) / (float) frameCount ;
+
         new Thread("Thread#smoothSetHeaderHeight") {
 
             @Override
@@ -227,6 +242,8 @@ public class StickyLayout extends LinearLayout {
                         height = to;
                     } else {
                         height = (int) (from + partation * i);
+                        //采用正弦曲线
+                        //height = (int) (from + (to - from) * Math.sin((double)i / frameCount * (Math.PI / 2)));
                     }
                     post(new Runnable() {
                         public void run() {
@@ -234,7 +251,7 @@ public class StickyLayout extends LinearLayout {
                         }
                     });
                     try {
-                        sleep(10);
+                        sleep(mDrawInterval);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -267,13 +284,13 @@ public class StickyLayout extends LinearLayout {
         if (DEBUG) {
             Log.d(TAG, "setHeaderHeight height=" + height);
         }
-        if (height <= 0) {
-            height = 0;
+        if (height <= mMinHeaderHeight) {
+            height = mMinHeaderHeight;
         } else if (height > mOriginalHeaderHeight) {
             height = mOriginalHeaderHeight;
         }
 
-        if (height == 0) {
+        if (height == mMinHeaderHeight) {
             mStatus = STATUS_COLLAPSED;
         } else {
             mStatus = STATUS_EXPANDED;
@@ -281,6 +298,8 @@ public class StickyLayout extends LinearLayout {
 
         if (mHeader != null && mHeader.getLayoutParams() != null) {
             mHeader.getLayoutParams().height = height;
+            TextView tvTitle = (TextView)mHeader.findViewById(R.id.tvTitle);
+            tvTitle.setTextSize((int)(height * 0.4));
             mHeader.requestLayout();
             mHeaderHeight = height;
         } else {
