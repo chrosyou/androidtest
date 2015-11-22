@@ -30,7 +30,7 @@ public class MainActivity extends Activity implements
     private ArrayList<Group> groupList;
     private ArrayList<List<Child>> childList;
 
-    private MyexpandableListAdapter adapter;
+    private PinnedHeaderExpandableListViewAdapter myAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +41,10 @@ public class MainActivity extends Activity implements
         stickyLayout = (StickyLayout)findViewById(R.id.sticky_layout);
         initData();
 
-        adapter = new MyexpandableListAdapter(this);
-        expandableListView.setAdapter(adapter);
+        myAdapter = new PinnedHeaderExpandableListViewAdapter(this);
+        myAdapter.setChildList(childList);
+        myAdapter.setGroupList(groupList);
+        expandableListView.setAdapter(myAdapter);
 
         // 展开所有group
         for (int i = 0, count = expandableListView.getCount(); i < count; i++) {
@@ -88,130 +90,6 @@ public class MainActivity extends Activity implements
 
     }
 
-    /***
-     * 数据源
-     *
-     * @author Administrator
-     *
-     */
-    class MyexpandableListAdapter extends BaseExpandableListAdapter {
-        private Context context;
-        private LayoutInflater inflater;
-
-        public MyexpandableListAdapter(Context context) {
-            this.context = context;
-            inflater = LayoutInflater.from(context);
-        }
-
-        // 返回父列表个数
-        @Override
-        public int getGroupCount() {
-            return groupList.size();
-        }
-
-        // 返回子列表个数
-        @Override
-        public int getChildrenCount(int groupPosition) {
-            return childList.get(groupPosition).size(); }
-
-        @Override
-        public Object getGroup(int groupPosition) {
-            return groupList.get(groupPosition);
-        }
-
-        @Override
-        public Object getChild(int groupPosition, int childPosition) {
-            return childList.get(groupPosition).get(childPosition);
-        }
-
-        @Override
-        public long getGroupId(int groupPosition) {
-            return groupPosition;
-        }
-
-        @Override
-        public long getChildId(int groupPosition, int childPosition) {
-            return childPosition;
-        }
-
-        @Override
-        public boolean hasStableIds() {
-
-            return true;
-        }
-
-        @Override
-        public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-            GroupHolder groupHolder = null;
-            if (convertView == null) {
-                groupHolder = new GroupHolder();
-                convertView = inflater.inflate(R.layout.groupitem, null);
-                groupHolder.textView = (TextView) convertView.findViewById(R.id.group);
-                groupHolder.multbutton = (MultButton)convertView.findViewById(R.id.multbutton);
-                groupHolder.multbutton.setOnClickListener(groupHolder.multbutton);
-                //groupHolder.multbutton.setSelectState();
-                convertView.setTag(groupHolder);
-            } else {
-                groupHolder = (GroupHolder) convertView.getTag();
-            }
-
-            groupHolder.textView.setText(((Group) getGroup(groupPosition)).getTitle());
-
-            //if (isExpanded)// ture is Expanded or false is not isExpanded
-            //    groupHolder.imageView.setImageResource(R.drawable.expanded);
-            //else
-            //    groupHolder.imageView.setImageResource(R.drawable.collapse);
-            return convertView;
-        }
-
-        @Override
-        public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-            ChildHolder childHolder = null;
-            if (convertView == null) {
-                childHolder = new ChildHolder();
-                convertView = inflater.inflate(R.layout.childitem, null);
-
-                childHolder.appImage = (ImageView) convertView.findViewById(R.id.appImage);
-                childHolder.appName = (TextView) convertView.findViewById(R.id.appName);
-                childHolder.appCleanSize = (TextView) convertView.findViewById(R.id.appCleanSize);
-                final Button button = (Button) convertView.findViewById(R.id.isSelect);
-                final int fgrouppos = groupPosition;
-                final int fchildpos = childPosition;
-
-                button.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int selecttemp = childList.get(fgrouppos).get(fchildpos).getSelectState();
-                        if (Group.STATE_SELECTED == selecttemp){
-                            button.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.common_select_null, 0);
-                            childList.get(fgrouppos).get(fchildpos).setSelectState(Group.STATE_NOTSELECTED);
-                        } else {
-                            button.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.common_select_all, 0);
-                            childList.get(fgrouppos).get(fchildpos).setSelectState(Group.STATE_SELECTED);
-                        }
-
-                    }
-                });
-
-                convertView.setTag(childHolder);
-            } else {
-                childHolder = (ChildHolder) convertView.getTag();
-            }
-
-            childHolder.appName.setText(((Child) getChild(groupPosition, childPosition)).getAppName());
-            childHolder.appCleanSize.setText(String.valueOf(((Child) getChild(groupPosition, childPosition)).getCleanSize()) + " MB");
-            //int selecttmp = ((Child)getChild(groupPosition, childPosition)).
-            //childHolder.isSelect.setBackground(((Child) getChild(groupPosition, childPosition)).getAddress());
-
-            return convertView;
-        }
-
-        @Override
-        public boolean isChildSelectable(int groupPosition, int childPosition) {
-            return true;
-        }
-    }
-
     @Override
     public boolean onGroupClick(final ExpandableListView parent, final View v, int groupPosition, final long id) {
         Toast.makeText(MainActivity.this, groupList.get(groupPosition).getTitle(), 1).show();
@@ -226,19 +104,6 @@ public class MainActivity extends Activity implements
         return false;
     }
 
-    class GroupHolder {
-        TextView textView;
-        ImageView imageView;
-        MultButton multbutton;
-    }
-
-    class ChildHolder {
-        ImageView appImage;
-        TextView appName;
-        TextView appCleanSize;
-        ImageView selectView;
-    }
-
     @Override
     public View getPinnedHeader() {
         View headerView = (ViewGroup) getLayoutInflater().inflate(R.layout.groupitem, null);
@@ -250,7 +115,7 @@ public class MainActivity extends Activity implements
 
     @Override
     public void updatePinnedHeader(View headerView, int firstVisibleGroupPos) {
-        Group firstVisibleGroup = (Group) adapter.getGroup(firstVisibleGroupPos);
+        Group firstVisibleGroup = (Group) myAdapter.getGroup(firstVisibleGroupPos);
         TextView textView = (TextView) headerView.findViewById(R.id.group);
         textView.setText(firstVisibleGroup.getTitle());
     }

@@ -92,7 +92,7 @@ public class PinnedHeaderExpandableListView extends ExpandableListView implement
         LayoutInflater inflater;
         inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.groupitem, null);
-        MultButton btmp = (MultButton)view.findViewById(R.id.multbutton);
+        Button btmp = (Button)view.findViewById(R.id.multbutton);
         float a = btmp.getX();
         float b = btmp.getY();
         float c = btmp.getWidth();
@@ -177,9 +177,6 @@ public class PinnedHeaderExpandableListView extends ExpandableListView implement
         int pos = pointToPosition(x, y);
 
         if (mHeaderView != null && y >= mHeaderView.getTop() && y <= mHeaderView.getBottom()) {
-//            if (x>=titlerc.left&&x<=titlerc.right&&y>=titlerc.top&&y<=titlerc.bottom){
-//
-//            }
             if (ev.getAction() == MotionEvent.ACTION_DOWN) {
                 mTouchTarget = getTouchTarget(mHeaderView, x, y);
                 mActionDownHappened = true;
