@@ -194,16 +194,14 @@ public class MainActivity extends Activity implements
                 childHolder = new ChildHolder();
                 convertView = inflater.inflate(R.layout.childitem, null);
 
-                childHolder.textName = (TextView) convertView
-                        .findViewById(R.id.name);
+                childHolder.appImage = (ImageView) convertView
+                        .findViewById(R.id.appImage);
                 childHolder.textAge = (TextView) convertView
-                        .findViewById(R.id.age);
+                        .findViewById(R.id.appName);
                 childHolder.textAddress = (TextView) convertView
-                        .findViewById(R.id.address);
-                childHolder.imageView = (ImageView) convertView
-                        .findViewById(R.id.image);
+                        .findViewById(R.id.appCleanSize);
                 Button button = (Button) convertView
-                        .findViewById(R.id.button1);
+                        .findViewById(R.id.isSlect);
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -216,8 +214,7 @@ public class MainActivity extends Activity implements
                 childHolder = (ChildHolder) convertView.getTag();
             }
 
-            childHolder.textName.setText(((Child) getChild(groupPosition,
-                    childPosition)).getName());
+            //childHolder.textName.setText(((Child) getChild(groupPosition, childPosition)).getName());
             childHolder.textAge.setText(String.valueOf(((Child) getChild(
                     groupPosition, childPosition)).getAge()));
             childHolder.textAddress.setText(((Child) getChild(groupPosition,
@@ -255,7 +252,7 @@ public class MainActivity extends Activity implements
     }
 
     class ChildHolder {
-        TextView textName;
+        ImageView appImage;
         TextView textAge;
         TextView textAddress;
         ImageView imageView;

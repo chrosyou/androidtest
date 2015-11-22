@@ -8,33 +8,30 @@
     android:descendantFocusability="blocksDescendants"
     android:padding="5dp" >
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
-    <TextView
-        android:id="@+id/age"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"/>
-     <TextView
-        android:id="@+id/address"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
-     <ImageView
-        android:id="@+id/image"
+    <ImageView
+        android:id="@+id/appImage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:src="@drawable/collapse"
-        android:visibility="gone" />
-     <Button
-         android:id="@+id/button1"
-         android:layout_width="0dp"
-         android:layout_height="wrap_content"
-         android:layout_weight="1"
-         android:text="Button" />
+        android:src="@drawable/ic_launcher"
+        />
+    <TextView
+        android:id="@+id/appName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+    <TextView
+        android:id="@+id/appCleanSize"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+    <Button
+        android:id="@+id/isSlect"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:drawableRight="@drawable/common_select_all"
+        android:background="#00000000"
+        />
 
 </LinearLayout>
