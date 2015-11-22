@@ -7,11 +7,15 @@ import android.view.MenuItem;
 
 public class MainActivity extends Activity {
 
+    private myclass mybutton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         System.out.println("bbbbbbbbbbbbbbbbbbb");
+
+        mybutton = (myclass)findViewById(R.id.mytest);
+        mybutton.setOnClickListener(mybutton);
     }
 
     @Override

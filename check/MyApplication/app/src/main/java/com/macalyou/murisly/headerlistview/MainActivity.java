@@ -147,7 +147,9 @@ public class MainActivity extends Activity implements
                 groupHolder = new GroupHolder();
                 convertView = inflater.inflate(R.layout.groupitem, null);
                 groupHolder.textView = (TextView) convertView.findViewById(R.id.group);
-                //groupHolder.imageView = (ImageView) convertView.findViewById(R.id.image);
+                groupHolder.multbutton = (MultButton)convertView.findViewById(R.id.multbutton);
+                groupHolder.multbutton.setOnClickListener(groupHolder.multbutton);
+                //groupHolder.multbutton.setSelectState();
                 convertView.setTag(groupHolder);
             } else {
                 groupHolder = (GroupHolder) convertView.getTag();
@@ -211,8 +213,7 @@ public class MainActivity extends Activity implements
     }
 
     @Override
-    public boolean onGroupClick(final ExpandableListView parent, final View v,
-                                int groupPosition, final long id) {
+    public boolean onGroupClick(final ExpandableListView parent, final View v, int groupPosition, final long id) {
         Toast.makeText(MainActivity.this, groupList.get(groupPosition).getTitle(), 1).show();
         return false;
     }
@@ -228,6 +229,7 @@ public class MainActivity extends Activity implements
     class GroupHolder {
         TextView textView;
         ImageView imageView;
+        MultButton multbutton;
     }
 
     class ChildHolder {

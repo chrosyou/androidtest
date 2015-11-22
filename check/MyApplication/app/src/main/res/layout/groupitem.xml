@@ -14,7 +14,7 @@
         />
 
     <com.macalyou.murisly.headerlistview.MultButton
-        android:id="@+id/image"
+        android:id="@+id/multbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"

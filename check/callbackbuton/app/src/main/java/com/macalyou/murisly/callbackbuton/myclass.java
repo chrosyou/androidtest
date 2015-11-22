@@ -4,16 +4,22 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 /**
  * Created by Administrator on 2015/11/5.
  */
-public class myclass extends Button {
+public class myclass extends Button implements View.OnClickListener {
     public myclass (Context context, AttributeSet set)
     {
         super(context, set);
+    }
+
+    @Override
+    public void onClick(View v) {
+        Log.i("multbutton", "onclick");
     }
 
     @Override
