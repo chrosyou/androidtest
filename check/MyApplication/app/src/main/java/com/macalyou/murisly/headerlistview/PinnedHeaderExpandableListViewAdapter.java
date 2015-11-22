@@ -81,6 +81,39 @@ public class PinnedHeaderExpandableListViewAdapter extends BaseExpandableListAda
         return groupList;
     }
 
+    public void setGroupState(int position, int state){
+        List<Child> child = childList.get(position);
+        for (Child c : child) {
+            c.setSelectState(state);
+        }
+    }
+
+    public int calcGroupState(int position) {
+        boolean hasSelect = false;
+        boolean hasNoSelect = false;
+        List<Child> child = childList.get(position);
+        for (int i = 0; i < child.size(); i++) {
+            if (Group.STATE_SELECTED == child.get(i).getSelectState()) {
+                hasSelect = true;
+            }
+            else if (Group.STATE_NOTSELECTED == child.get(i).getSelectState()) {
+                hasNoSelect = true;
+            }
+
+            if (hasSelect && hasNoSelect) {
+                return Group.STATE_PARTSELECTED;
+            }
+        }
+
+        if (hasSelect) {
+            return Group.STATE_SELECTED;
+        }
+        else{
+            return Group.STATE_NOTSELECTED;
+        }
+    }
+
+
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         GroupHolder groupHolder = null;
@@ -104,8 +137,10 @@ public class PinnedHeaderExpandableListViewAdapter extends BaseExpandableListAda
                 int selecttemp = groupList.get(fgrouppos).getSelectState();
                 if (Group.STATE_SELECTED == selecttemp) {
                     groupList.get(fgrouppos).setSelectState(Group.STATE_NOTSELECTED);
+                    setGroupState(fgrouppos, Group.STATE_NOTSELECTED);
                 } else {
                     groupList.get(fgrouppos).setSelectState(Group.STATE_SELECTED);
+                    setGroupState(fgrouppos, Group.STATE_SELECTED);
                 }
                 notifyDataSetChanged();
             }
@@ -114,8 +149,10 @@ public class PinnedHeaderExpandableListViewAdapter extends BaseExpandableListAda
         int selectState = ((Group)getGroup(groupPosition)).getSelectState();
         if (Group.STATE_SELECTED == selectState){
             groupHolder.multbutton.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.common_select_all, 0);
-        } else {
+        } else if (Group.STATE_NOTSELECTED == selectState) {
             groupHolder.multbutton.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.common_select_null, 0);
+        } else {
+            groupHolder.multbutton.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.common_select_mult, 0);
         }
 
         return convertView;
@@ -152,6 +189,7 @@ public class PinnedHeaderExpandableListViewAdapter extends BaseExpandableListAda
                 } else {
                     childList.get(fgrouppos).get(fchildpos).setSelectState(Group.STATE_SELECTED);
                 }
+                groupList.get(fgrouppos).setSelectState(calcGroupState(fgrouppos));
                 notifyDataSetChanged();
             }
         });
