@@ -155,10 +155,10 @@ public class MainActivity extends Activity implements
 
             groupHolder.textView.setText(((Group) getGroup(groupPosition)).getTitle());
 
-            if (isExpanded)// ture is Expanded or false is not isExpanded
-                groupHolder.imageView.setImageResource(R.drawable.expanded);
-            else
-                groupHolder.imageView.setImageResource(R.drawable.collapse);
+            //if (isExpanded)// ture is Expanded or false is not isExpanded
+            //    groupHolder.imageView.setImageResource(R.drawable.expanded);
+            //else
+            //    groupHolder.imageView.setImageResource(R.drawable.collapse);
             return convertView;
         }
 
@@ -213,16 +213,14 @@ public class MainActivity extends Activity implements
     @Override
     public boolean onGroupClick(final ExpandableListView parent, final View v,
                                 int groupPosition, final long id) {
-
+        Toast.makeText(MainActivity.this, groupList.get(groupPosition).getTitle(), 1).show();
         return false;
     }
 
     @Override
     public boolean onChildClick(ExpandableListView parent, View v,
                                 int groupPosition, int childPosition, long id) {
-        Toast.makeText(MainActivity.this,
-                childList.get(groupPosition).get(childPosition).getAppName(), 1)
-                .show();
+        Toast.makeText(MainActivity.this, childList.get(groupPosition).get(childPosition).getAppName(), 1).show();
 
         return false;
     }

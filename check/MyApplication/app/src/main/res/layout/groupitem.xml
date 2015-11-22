@@ -10,15 +10,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:text="grouptitle" />
+        android:text="grouptitle"
+        />
 
-    <Button
+    <com.macalyou.murisly.headerlistview.MultButton
         android:id="@+id/image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/common_select_all"
+        android:drawableRight="@drawable/common_select_all"
+        android:focusable="false"
+        android:clickable="true"
+        android:background="#00000000"
         />
 
 </RelativeLayout>
