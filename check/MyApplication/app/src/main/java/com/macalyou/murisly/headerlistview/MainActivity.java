@@ -23,7 +23,8 @@ import java.util.List;
 public class MainActivity extends Activity implements
         ExpandableListView.OnChildClickListener,
         ExpandableListView.OnGroupClickListener,
-        PinnedHeaderExpandableListView.OnHeaderUpdateListener, StickyLayout.OnGiveUpTouchEventListener {
+        PinnedHeaderExpandableListView.OnHeaderUpdateListener,
+        StickyLayout.OnGiveUpTouchEventListener {
 
     private PinnedHeaderExpandableListView expandableListView;
     private StickyLayout stickyLayout;
@@ -109,6 +110,20 @@ public class MainActivity extends Activity implements
         headerView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 
         return headerView;
+    }
+
+    @Override
+    public void updateHeaderButton(int position){
+        Group group = (Group)myAdapter.getGroup(position);
+        int state = group.getSelectState();
+        if (Group.STATE_SELECTED == state) {
+            myAdapter.setGroupState(position, Group.STATE_NOTSELECTED);
+            group.setSelectState(Group.STATE_NOTSELECTED);
+        } else {
+            myAdapter.setGroupState(position, Group.STATE_SELECTED);
+            group.setSelectState(Group.STATE_SELECTED);
+        }
+        myAdapter.notifyDataSetChanged();
     }
 
     @Override

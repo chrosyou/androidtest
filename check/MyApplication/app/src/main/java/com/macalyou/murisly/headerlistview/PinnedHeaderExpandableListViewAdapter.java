@@ -113,6 +113,21 @@ public class PinnedHeaderExpandableListViewAdapter extends BaseExpandableListAda
         }
     }
 
+    public void setGroupState(Button btn, int position, int state){
+        if (Group.STATE_SELECTED == state){
+            btn.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.common_select_all, 0);
+        } else if (Group.STATE_NOTSELECTED == state) {
+            btn.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.common_select_null, 0);
+        } else {
+            btn.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.common_select_mult, 0);
+        }
+        groupList.get(position).setSelectState(state);
+    }
+
+    public void setGroupChildState(Button btn, int position, int state){
+
+    }
+
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
@@ -147,13 +162,7 @@ public class PinnedHeaderExpandableListViewAdapter extends BaseExpandableListAda
         });
 
         int selectState = ((Group)getGroup(groupPosition)).getSelectState();
-        if (Group.STATE_SELECTED == selectState){
-            groupHolder.multbutton.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.common_select_all, 0);
-        } else if (Group.STATE_NOTSELECTED == selectState) {
-            groupHolder.multbutton.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.common_select_null, 0);
-        } else {
-            groupHolder.multbutton.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.common_select_mult, 0);
-        }
+        setGroupState(groupHolder.multbutton, groupPosition, selectState);
 
         return convertView;
     }

@@ -53,6 +53,9 @@ public class PinnedHeaderExpandableListView extends ExpandableListView implement
         public View getPinnedHeader();
 
         public void updatePinnedHeader(View headerView, int firstVisibleGroupPos);
+
+        //更新头部的button图标
+        public void updateHeaderButton(int position);
     }
 
     private View mHeaderView;
@@ -159,9 +162,19 @@ public class PinnedHeaderExpandableListView extends ExpandableListView implement
         int x = (int) ev.getX();
         int y = (int) ev.getY();
         int pos = pointToPosition(x, y);
+        Button btn = (Button)mHeaderView.findViewById(R.id.multbutton);
+        float left = btn.getX();
+        float top = btn.getY();
+        float right = left + btn.getWidth();
+        float botton = top + btn.getHeight();
 
         if (mHeaderView != null && y >= mHeaderView.getTop() && y <= mHeaderView.getBottom()) {
             if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+                //顶端按钮
+                if (x>=left&&x<=right&&y>=top&&y<=botton) {
+                    int groupPosition = getPackedPositionGroup(getExpandableListPosition(pos));
+                    mHeaderUpdateListener.updateHeaderButton(groupPosition);
+                }
                 mTouchTarget = getTouchTarget(mHeaderView, x, y);
                 mActionDownHappened = true;
             } else if (ev.getAction() == MotionEvent.ACTION_UP) {
