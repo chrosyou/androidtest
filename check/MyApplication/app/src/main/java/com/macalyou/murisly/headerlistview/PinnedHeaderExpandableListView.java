@@ -28,13 +28,16 @@ package com.macalyou.murisly.headerlistview;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.AbsListView.OnScrollListener;
 
@@ -64,25 +67,41 @@ public class PinnedHeaderExpandableListView extends ExpandableListView implement
     private boolean mActionDownHappened = false;
     protected boolean mIsHeaderGroupClickable = true;
 
+    private Rect titlerc;  //按钮位置
+
 
     public PinnedHeaderExpandableListView(Context context) {
         super(context);
-        initView();
+        initView(context);
     }
 
     public PinnedHeaderExpandableListView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        initView();
+        initView(context);
     }
 
     public PinnedHeaderExpandableListView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        initView();
+        initView(context);
     }
 
-    private void initView() {
+    private void initView(Context context) {
         setFadingEdgeLength(0);
         setOnScrollListener(this);
+
+        LayoutInflater inflater;
+        inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.groupitem, null);
+        MultButton btmp = (MultButton)view.findViewById(R.id.multbutton);
+        float a = btmp.getX();
+        float b = btmp.getY();
+        float c = btmp.getWidth();
+        float d = btmp.getHeight();
+
+//        titlerc.left = (int)(btmp.getX());
+//        titlerc.top = (int)(btmp.getY());
+//        titlerc.right = (int)(btmp.getWidth()) + titlerc.left;
+//        titlerc.bottom = (int)(btmp.getWidth()) + titlerc.top;
     }
 
     @Override
@@ -156,7 +175,11 @@ public class PinnedHeaderExpandableListView extends ExpandableListView implement
         int x = (int) ev.getX();
         int y = (int) ev.getY();
         int pos = pointToPosition(x, y);
+
         if (mHeaderView != null && y >= mHeaderView.getTop() && y <= mHeaderView.getBottom()) {
+//            if (x>=titlerc.left&&x<=titlerc.right&&y>=titlerc.top&&y<=titlerc.bottom){
+//
+//            }
             if (ev.getAction() == MotionEvent.ACTION_DOWN) {
                 mTouchTarget = getTouchTarget(mHeaderView, x, y);
                 mActionDownHappened = true;
