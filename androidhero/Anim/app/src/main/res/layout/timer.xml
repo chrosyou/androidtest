@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Click Me"
+        android:text="C e"
         android:textSize="60sp"
         android:onClick="tvTimer"
         android:layout_centerVertical="true"

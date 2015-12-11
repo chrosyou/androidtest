@@ -93,17 +93,17 @@ public class PropertyTest extends Activity implements View.OnClickListener {
         ObjectAnimator animator4 = ObjectAnimator.ofFloat(
                 mImageViews.get(4),
                 "translationX",
-                -200F);
+                200F);
         ObjectAnimator animator5 = ObjectAnimator.ofFloat(
                 mImageViews.get(4),
                 "translationY",
-                100F);
-        ObjectAnimator animator6 = ObjectAnimator.ofFloat(mImageViews.get(4),
-                "pivotX", 50, 0);
-        ObjectAnimator animator7 = ObjectAnimator.ofFloat(mImageViews.get(4),
-                "pivotY", 50, 0);
+                200F);
+        ObjectAnimator animator6 = ObjectAnimator.ofFloat(
+                mImageViews.get(4),
+                "rotation",
+                0,360);
         AnimatorSet set = new AnimatorSet();
-        set.setDuration(500);
+        set.setDuration(3000);
         set.setInterpolator(new BounceInterpolator());
         set.playTogether(
                 animator0,
@@ -112,8 +112,8 @@ public class PropertyTest extends Activity implements View.OnClickListener {
                 animator3,
                 animator4,
                 animator5,
-                animator6,
-                animator7);
+                animator6
+                );
         set.start();
         mFlag = false;
     }
