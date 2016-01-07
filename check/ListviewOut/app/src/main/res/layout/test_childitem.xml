@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#0f0"
+    android:padding="0dp">
+
+    <ImageView
+        android:id="@+id/cpucooling_appImage"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="14dp"
+        android:layout_centerVertical="true"
+        android:src="#ff0"
+        android:padding="6dp"
+        />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/cpucooling_appImage"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="110dp"
+        android:textSize="15dp"
+        android:textColor="#00f"
+        android:paddingLeft="10dp"
+        android:singleLine="true"
+        />
+
+    <Button
+        android:id="@+id/cpucooling_state"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginRight="13dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        />
+
+</merge>
