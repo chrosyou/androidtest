@@ -1,16 +1,26 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
 
     >
 
-    <Button android:id="@+id/Button01" android:layout_height="wrap_content" android:text="非Layout型对话框" android:layout_width="fill_parent"></Button>
-    <Button android:id="@+id/Button02" android:layout_height="wrap_content" android:text="Layout型对话框" android:layout_width="fill_parent"></Button>
+    <Button
+        android:id="@+id/Button01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="非Layout型对话框"></Button>
+
+    <Button
+        android:id="@+id/Button02"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Layout型对话框"></Button>
 
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_world" />
 
 </LinearLayout>

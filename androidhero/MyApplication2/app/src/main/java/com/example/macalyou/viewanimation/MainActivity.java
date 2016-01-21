@@ -2,22 +2,55 @@ package com.example.macalyou.viewanimation;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Layout;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
+import android.widget.BaseAdapter;
 
 public class MainActivity extends Activity {
+    public class MyAdapter extends BaseAdapter
+    {
+        private LayoutInflater inflater;
+        public MyAdapter() {
+            inflater = LayoutInflater.from(getWindow().getContext());
+            inflater.inflate();
+        }
+
+        @Override
+        public int getCount() {
+            return 0;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            return null;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //getWindow().requestFeature();
     }
 
     @Override
@@ -65,6 +98,7 @@ public class MainActivity extends Activity {
     public void btnTranslate(View view) {
         TranslateAnimation ta = new TranslateAnimation(0, 200, 0, 300);
         ta.setDuration(1000);
+        ta.setFillAfter(true);
         view.startAnimation(ta);
     }
 

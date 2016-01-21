@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.administrator.touchtest.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+    <com.example.administrator.touchtest.ButtonTest
+        android:id="@+id/buttontest"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="test"
+        android:background="#aaa"
+        />
+
+    </LinearLayout>
+
+</LinearLayout>
