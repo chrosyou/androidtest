@@ -1,10 +1,7 @@
 package com.example.administrator.touchtest;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,7 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     ButtonTest bttest;
     LinearLayout line;
@@ -28,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         bttest.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                Log.d("onTouch", "action=onTouch");
+                Log.d("onTouch", "action=onTouch, " + v);
                 return false;
             }
         });
@@ -36,21 +33,21 @@ public class MainActivity extends AppCompatActivity {
         bttest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("onClick", "action=onclick");
+                Log.d("onClick", "action=onclick, " + v);
             }
         });
 
         line.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("onClick", "action=line_onclick");
+                Log.d("onClick", "action=line_onclick, " + v);
             }
         });
 
         line.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                Log.d("onClick", "action=line_onTouch");
+                Log.d("onClick", "action=line_onTouch, " + v);
                 return false;
             }
         });
