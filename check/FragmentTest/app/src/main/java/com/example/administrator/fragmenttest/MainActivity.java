@@ -16,10 +16,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private Button third;
     private Button four;
 
-    FirstFragment mFirst;
-    SecondFragment mSecond;
-    ThirdFragment mThird;
-    FourFragment mFour;
+    FragmentFirst mFirst;
+    FragmentSecond mSecond;
+    FragmentThird mThird;
+    FragmentFour mFour;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         FragmentTransaction transaction = fm.beginTransaction();
 
 
-        mFirst = new FirstFragment();
+        mFirst = new FragmentFirst();
         transaction.replace(R.id.id_fragment_content, mFirst);
         transaction.commit();
     }
@@ -53,12 +53,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         FragmentManager fm = getFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        transaction.setCustomAnimations(R.anim.fragment_slide_right_enter, R.anim.fragment_slide_left_out);
+        transaction.setCustomAnimations(R.anim.fragment_slide_right_enter, R.anim.fragment_slide_left_leave);
 
         switch (v.getId()) {
             case R.id.id_first:
                 if (mFirst == null) {
-                    mFirst = new FirstFragment();
+                    mFirst = new FragmentFirst();
                     transaction.add(R.id.id_fragment_content, mFirst);
                 }
 
@@ -68,7 +68,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.id_second:
                 if (mSecond == null) {
-                    mSecond = new SecondFragment();
+                    mSecond = new FragmentSecond();
                     transaction.add(R.id.id_fragment_content, mSecond);
                 }
                 transaction.show(mSecond);
@@ -77,7 +77,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.id_third:
                 if (mThird == null) {
-                    mThird = new ThirdFragment();
+                    mThird = new FragmentThird();
                     transaction.add(R.id.id_fragment_content, mThird);
                 }
 
@@ -87,8 +87,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
 
             case R.id.id_four:
+                transaction.setCustomAnimations(R.anim.fragment_slide_left_enter, R.anim.fragment_slide_right_leave);
                 if (mFour == null) {
-                    mFour = new FourFragment();
+                    mFour = new FragmentFour();
                     transaction.add(R.id.id_fragment_content, mFour);
                 }
 

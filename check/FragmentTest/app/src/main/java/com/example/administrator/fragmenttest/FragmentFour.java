@@ -9,12 +9,12 @@ import android.view.ViewGroup;
 /**
  * Created by Administrator on 2016/2/16.
  */
-public class ThirdFragment extends Fragment {
+public class FragmentFour extends FragmentContent {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.third_fragment, container, false);
+        View view = inflater.inflate(R.layout.four_fragment, container, false);
         return view;
     }
 

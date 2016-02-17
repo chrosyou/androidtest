@@ -9,12 +9,13 @@ import android.view.ViewGroup;
 /**
  * Created by Administrator on 2016/2/16.
  */
-public class ContentFragment extends Fragment {
+public class FragmentSecond extends FragmentContent {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.content_fragment, container, false);
+        View view = inflater.inflate(R.layout.second_fragment, container, false);
         return view;
     }
+
 }
