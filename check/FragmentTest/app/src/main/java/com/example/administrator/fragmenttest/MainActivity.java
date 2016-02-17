@@ -1,7 +1,6 @@
 package com.example.administrator.fragmenttest;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -14,9 +13,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private static final String TAG = "MainActivity";
     private Button first;
     private Button second;
+    private Button third;
+    private Button four;
 
-    FirstFragment mFitst;
+    FirstFragment mFirst;
     SecondFragment mSecond;
+    ThirdFragment mThird;
+    FourFragment mFour;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +28,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         first = (Button) findViewById(R.id.id_first);
         second = (Button) findViewById(R.id.id_second);
+        third = (Button) findViewById(R.id.id_third);
+        four = (Button) findViewById(R.id.id_four);
         first.setOnClickListener(this);
         second.setOnClickListener(this);
+        third.setOnClickListener(this);
+        four.setOnClickListener(this);
 
         init();
     }
@@ -36,8 +43,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         FragmentTransaction transaction = fm.beginTransaction();
 
 
-        mFitst = new FirstFragment();
-        transaction.replace(R.id.id_fragment_content, mFitst);
+        mFirst = new FirstFragment();
+        transaction.replace(R.id.id_fragment_content, mFirst);
         transaction.commit();
     }
 
@@ -46,20 +53,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         FragmentManager fm = getFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        //hideFragments(transaction);
-        transaction.setCustomAnimations(R.anim.fragment_slide_left_enter, R.anim.fragment_slide_right_exit);
-
+        transaction.setCustomAnimations(R.anim.fragment_slide_right_enter, R.anim.fragment_slide_left_out);
 
         switch (v.getId()) {
             case R.id.id_first:
-                if (mFitst == null) {
-                    mFitst = new FirstFragment();
-                    transaction.add(R.id.id_fragment_content, mFitst);
+                if (mFirst == null) {
+                    mFirst = new FirstFragment();
+                    transaction.add(R.id.id_fragment_content, mFirst);
                 }
 
-                transaction.show(mFitst);
-                transaction.hide(mSecond);
-                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                transaction.show(mFirst);
+                transaction.hide(mFour);
                 Log.w(TAG, "first");
                 break;
             case R.id.id_second:
@@ -68,9 +72,29 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     transaction.add(R.id.id_fragment_content, mSecond);
                 }
                 transaction.show(mSecond);
-                transaction.hide(mFitst);
-                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                transaction.hide(mFirst);
                 Log.w(TAG, "second");
+                break;
+            case R.id.id_third:
+                if (mThird == null) {
+                    mThird = new ThirdFragment();
+                    transaction.add(R.id.id_fragment_content, mThird);
+                }
+
+                transaction.show(mThird);
+                transaction.hide(mSecond);
+                Log.w(TAG, "third");
+                break;
+
+            case R.id.id_four:
+                if (mFour == null) {
+                    mFour = new FourFragment();
+                    transaction.add(R.id.id_fragment_content, mFour);
+                }
+
+                transaction.show(mFour);
+                transaction.hide(mThird);
+                Log.w(TAG, "four");
                 break;
         }
 
@@ -79,9 +103,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private void hideFragments(FragmentTransaction transaction)
     {
-        if (mFitst != null)
+        if (mFirst != null)
         {
-            transaction.hide(mFitst);
+            transaction.hide(mFirst);
         }
         if (mSecond != null)
         {

@@ -30,6 +30,18 @@
             android:layout_height="match_parent"
             android:text="second" />
 
+        <Button
+            android:id="@+id/id_third"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="second" />
+
+        <Button
+            android:id="@+id/id_four"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="second" />
+
     </LinearLayout>
 
 </RelativeLayout>
