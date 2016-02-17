@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<set xmlns:android="http://schemas.android.com/apk/res/android"
-    android:interpolator="anim/interpolator_resource"
-    android:shareInterpolator="false">
-    <alpha
-        android:fromAlpha="float"
-        android:toAlpha="float" />
-</set>

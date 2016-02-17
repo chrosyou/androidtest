@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.administrator.fragmenttest.MainActivity">
+
+    <com.example.administrator.fragmenttest.FrameLayoutContainer
+        android:id="@+id/id_fragment_content"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        >
+
+    </com.example.administrator.fragmenttest.FrameLayoutContainer>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/id_fragment_content">
+        <Button
+            android:id="@+id/id_first"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="first" />
+
+        <Button
+            android:id="@+id/id_second"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="second" />
+
+    </LinearLayout>
+
+</RelativeLayout>

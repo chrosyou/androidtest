@@ -2,13 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="30dp">
+    android:layout_marginLeft="30dp"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="60dp"
+    <Button
+        android:id="@+id/id_alpha"
+        android:layout_width="100dp"
         android:layout_height="30dp"
-        android:background="#ccc"
+        android:background="@color/colorback"
         android:text="alpha"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/id_scale"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorback"
+        android:text="ascale"
         android:textSize="20sp" />
 
 </LinearLayout>
