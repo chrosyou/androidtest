@@ -15,13 +15,13 @@ public interface IContentFragment {
     }
 
     enum EventFlag {
-        FIRST,
-        SECOND,
-        THIRD,
-        FOUR,
+        FIRST_EVENT,
+        SECOND_EVENT,
+        THIRD_EVENT,
+        FOUR_EVENT,
     }
 
     interface ContentFragmentEventListener {
-        void onViewEvent(Fragment view, EventFlag eventFlag);
+        void onViewEvent(FragmentFlag fragmentFlag, EventFlag eventFlag);
     }
 }

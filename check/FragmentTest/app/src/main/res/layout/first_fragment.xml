@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.administrator.fragmenttest.FrameLayoutContainer xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.administrator.fragmenttest.RelativeLayoutContainer xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff0"
-    android:orientation="vertical">
+    android:background="#ff0">
 
     <TextView
+        android:id="@+id/first_text"
         android:layout_width="fill_parent"
         android:layout_height="60dp"
         android:text="first做主面板"
         android:textSize="20sp"
         android:textStyle="bold" />
 
-</com.example.administrator.fragmenttest.FrameLayoutContainer>
+    <Button
+        android:id="@+id/id_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/first_text"
+        android:text="first" />
+
+</com.example.administrator.fragmenttest.RelativeLayoutContainer>

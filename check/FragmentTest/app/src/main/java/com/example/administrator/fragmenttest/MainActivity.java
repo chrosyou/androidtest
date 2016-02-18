@@ -35,7 +35,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         third.setOnClickListener(this);
         four.setOnClickListener(this);
 
-        init();
+        UIDispatch.getInstance().Init(this);
     }
 
     public void init() {
@@ -57,14 +57,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.id_first:
-                if (mFirst == null) {
-                    mFirst = new FragmentFirst();
-                    transaction.add(R.id.id_fragment_content, mFirst);
-                }
 
-                transaction.show(mFirst);
-                transaction.hide(mFour);
-                Log.w(TAG, "first");
                 break;
             case R.id.id_second:
                 if (mSecond == null) {

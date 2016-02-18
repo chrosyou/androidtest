@@ -1,8 +1,11 @@
 package com.example.administrator.fragmenttest;
 
+import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by Administrator on 2016/2/17.
@@ -12,6 +15,7 @@ public class FragmentStack {
     private Map<IContentFragment.FragmentFlag, FragmentContent> contentFragmentStack;
 
     public FragmentStack() {
+        contentFragmentStack = new TreeMap<>();
         for (IContentFragment.FragmentFlag each : IContentFragment.FragmentFlag.values()) {
             contentFragmentStack.put(each, null);
         }
@@ -30,17 +34,10 @@ public class FragmentStack {
 
     public FragmentContent getFragmentByFlag(IContentFragment.FragmentFlag flag) {
         FragmentContent fragment = contentFragmentStack.get(flag);
-        if (fragment == null) {
-            fragment = createFlagment(flag);
-        }
-
-        if (fragment != null) {
-            contentFragmentStack.put(flag, fragment);
-        }
         return fragment;
     }
 
-    private FragmentContent createFlagment(IContentFragment.FragmentFlag flag) {
+    public FragmentContent createFlagment(IContentFragment.FragmentFlag flag) {
         FragmentContent newFlagment = null;
 
         switch (flag) {
@@ -48,7 +45,7 @@ public class FragmentStack {
                 newFlagment = new FragmentFirst();
                 break;
             case SECOND:
-                newFlagment = new FragmentFirst();
+                newFlagment = new FragmentSecond();
                 break;
             case THIRD:
                 newFlagment = new FragmentThird();
@@ -56,8 +53,20 @@ public class FragmentStack {
             case FOUR:
                 newFlagment = new FragmentFour();
                 break;
+            default:
+                break;
         }
 
+        contentFragmentStack.put(flag, newFlagment);
         return newFlagment;
+    }
+
+    public void hideAll(FragmentTransaction transaction) {
+        for (Map.Entry<IContentFragment.FragmentFlag, FragmentContent> entry : contentFragmentStack.entrySet()) {
+            FragmentContent fragmentContent = entry.getValue();
+            if (fragmentContent != null) {
+                transaction.hide(entry.getValue());
+            }
+        }
     }
 }

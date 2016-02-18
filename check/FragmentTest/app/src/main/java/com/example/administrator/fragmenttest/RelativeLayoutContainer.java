@@ -2,22 +2,22 @@ package com.example.administrator.fragmenttest;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
 /**
  * Created by Administrator on 2016/2/17.
  */
-public class FrameLayoutContainer extends FrameLayout {
+public class RelativeLayoutContainer extends RelativeLayout {
 
-    public FrameLayoutContainer(Context context){
+    public RelativeLayoutContainer(Context context){
         super(context, null);
     }
 
-    public FrameLayoutContainer(Context context, AttributeSet attr){
+    public RelativeLayoutContainer(Context context, AttributeSet attr){
         super(context, attr, 0);
     }
 
-    public FrameLayoutContainer(Context context, AttributeSet attr, int defStyleAttr){
+    public RelativeLayoutContainer(Context context, AttributeSet attr, int defStyleAttr){
         super(context, attr, defStyleAttr);
     }
 

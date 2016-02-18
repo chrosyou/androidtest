@@ -5,13 +5,13 @@
     android:layout_height="match_parent"
     tools:context="com.example.administrator.fragmenttest.MainActivity">
 
-    <com.example.administrator.fragmenttest.FrameLayoutContainer
+    <com.example.administrator.fragmenttest.RelativeLayoutContainer
         android:id="@+id/id_fragment_content"
         android:layout_width="match_parent"
         android:layout_height="400dp"
         >
 
-    </com.example.administrator.fragmenttest.FrameLayoutContainer>
+    </com.example.administrator.fragmenttest.RelativeLayoutContainer>
 
 
     <LinearLayout
